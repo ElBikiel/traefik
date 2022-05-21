@@ -1,0 +1,12 @@
+[http.middlewares.simpleAuth.basicAuth]
+  users = [
+    "admin:$apr1$5BY6LhNy$oHXG6n.tTZ/T7g2K67R5t."
+  ]
+
+[http.routers.api]
+  rule = "Host(`monitor.pickit.dev`)"
+  entrypoints = ["websecure"]
+  middlewares = ["simpleAuth"]
+  service = "api@internal"
+  [http.routers.api.tls]
+    certResolver = "lets-encrypt"
